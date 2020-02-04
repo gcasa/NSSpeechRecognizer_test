@@ -7,16 +7,26 @@
 //
 
 #import "AppDelegate.h"
+#import <AppKit/AppKit.h>
 
 @interface AppDelegate ()
+{
+    NSSpeechRecognizer *speechRecognizer;
+}
 
 @property (weak) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSButton *start;
+@property (weak) IBOutlet NSButton *stop;
+@property (weak) IBOutlet NSTextField *out;
+
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    speechRecognizer = [[NSSpeechRecognizer alloc] init];
+    speechRecognizer.commands = [NSArray arrayWithObject:@"hello"];
 }
 
 
@@ -24,5 +34,19 @@
     // Insert code here to tear down your application
 }
 
+- (IBAction) start:(id)sender
+{
+    [speechRecognizer startListening];
+}
 
+- (IBAction) stop:(id)sender
+{
+    [speechRecognizer stopListening];
+}
+
+- (void) speechRecognizer:(NSSpeechRecognizer *)sender didRecognizeCommand:(NSString *)command
+{
+    NSLog(@"%@", command);
+    [self.out setStringValue: command];
+}
 @end
