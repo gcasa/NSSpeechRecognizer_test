@@ -26,7 +26,8 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     speechRecognizer = [[NSSpeechRecognizer alloc] init];
-    speechRecognizer.commands = [NSArray arrayWithObject:@"hello"];
+    speechRecognizer.delegate = self;
+    speechRecognizer.commands = [NSArray arrayWithObjects:@"hello", @"test", nil];
 }
 
 
