@@ -14,24 +14,28 @@
     NSSpeechRecognizer *speechRecognizer;
 }
 
-@property (weak) IBOutlet NSWindow *window;
-@property (weak) IBOutlet NSButton *start;
-@property (weak) IBOutlet NSButton *stop;
-@property (weak) IBOutlet NSTextField *out;
+@property (retain) IBOutlet NSWindow *window;
+@property (retain) IBOutlet NSButton *start;
+@property (retain) IBOutlet NSButton *stop;
+@property (retain) IBOutlet NSTextField *out;
 
 @end
 
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
     // Insert code here to initialize your application
     speechRecognizer = [[NSSpeechRecognizer alloc] init];
+    NSLog(@"speechRecognizer = %@", speechRecognizer);
     speechRecognizer.delegate = self;
-    speechRecognizer.commands = [NSArray arrayWithObjects:@"hello", @"test", nil];
+    speechRecognizer.commands = [NSArray arrayWithObjects:@"hello",
+                                         @"test", nil];
 }
 
 
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
+- (void)applicationWillTerminate:(NSNotification *)aNotification
+{
     // Insert code here to tear down your application
 }
 
@@ -47,7 +51,7 @@
 
 - (void) speechRecognizer:(NSSpeechRecognizer *)sender didRecognizeCommand:(NSString *)command
 {
-    NSLog(@"%@", command);
+    NSLog(@"########################## %@", command);
     [self.out setStringValue: command];
 }
 @end

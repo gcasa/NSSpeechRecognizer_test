@@ -25,7 +25,8 @@ include $(GNUSTEP_MAKEFILES)/common.make
 VERSION = 0.1
 PACKAGE_NAME = NSSpeechRecognizer_test
 APP_NAME = NSSpeechRecognizer_test
-NSSpeechRecognizer_test_APPLICATION_ICON = 
+NSSpeechRecognizer_test_APPLICATION_ICON =
+NSSpeechRecognizer_test_MAIN_MODEL_FILE = MainMenu.xib
 
 
 #
